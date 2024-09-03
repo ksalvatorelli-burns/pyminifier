@@ -168,7 +168,8 @@ builtins = [
     'unicode',
     'vars',
     'xrange',
-    'zip'
+    'zip',
+    'App'
 ]
 
 reserved_words = keyword.kwlist + builtins
