@@ -228,7 +228,8 @@ def reduce_operators(source):
         last_col = end_col
         last_lineno = end_line
         prev_tok = tok
-    return out
+    ## DO NOTHING
+    return source
 
 def join_multiline_pairs(source, pair="()"):
     """
