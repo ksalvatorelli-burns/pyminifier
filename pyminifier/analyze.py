@@ -169,7 +169,8 @@ builtins = [
     'vars',
     'xrange',
     'zip',
-    'App'
+    'App',
+    'app'
 ]
 
 reserved_words = keyword.kwlist + builtins
