@@ -227,6 +227,9 @@ def obfuscatable_class(tokens, index, **kwargs):
     if token_string.startswith('__'): # Don't mess with specials
         return None
     if token_string in imports_dont_replace:
+        print(token_string)
+        print(token_string)
+        print(token_string)
         return None
     if prev_tok_string == "class":
         return token_string
