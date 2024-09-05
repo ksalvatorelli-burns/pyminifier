@@ -385,7 +385,7 @@ def obfuscate_variable(
     whether or not this token is safe to obfuscate.
     """
     def return_replacement(replacement):
-        if token_string in imports_dont_replace:
+        if replacement in imports_dont_replace:
             print("imprt: " + token_string)
             return replacement
         VAR_REPLACEMENTS[replacement] = replace
