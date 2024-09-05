@@ -87,6 +87,12 @@ def apply_obfuscation(source):
     classes = find_obfuscatables(tokens, obfuscatable_class)
     functions = find_obfuscatables(tokens, obfuscatable_function)
     imports_dont_replace = imports_dont_replace + analyze.find_imported_functions(source)
+    print("imports_dont_replace:")
+    print(imports_dont_replace)
+    print(imports_dont_replace)
+    print(imports_dont_replace)
+    print(imports_dont_replace)
+    print("/imports_dont_replace")
     for variable in variables:
         replace_obfuscatables(
             tokens, obfuscate_variable, variable, name_generator)
@@ -163,7 +169,9 @@ def obfuscatable_variable(tokens, index, ignore_length=False):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     if token_string in imports_dont_replace:
+        print("imprt: " + token_string)
         return None
     line = tok[4]
     if index > 0:
@@ -217,7 +225,9 @@ def obfuscatable_class(tokens, index, **kwargs):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     if token_string in imports_dont_replace:
+        print("imprt: " + token_string)
         return None
     if index > 0:
         prev_tok = tokens[index-1]
@@ -240,7 +250,9 @@ def obfuscatable_function(tokens, index, **kwargs):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     if token_string in imports_dont_replace:
+        print("imprt: " + token_string)
         return None
     if index > 0:
         prev_tok = tokens[index-1]
@@ -302,6 +314,7 @@ def replace_obfuscatables(module, tokens, obfunc, replace, name_generator, table
     for index, tok in enumerate(tokens):
         token_type = tok[0]
         token_string = tok[1]
+        print("tokstr: " + token_string)
         if token_type == tokenize.NEWLINE:
             skip_line = False
             right_of_equal = False
@@ -377,6 +390,7 @@ def obfuscate_variable(
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     if index > 0:
         prev_tok = tokens[index-1]
     else: # Pretend it's a newline (for simplicity)
@@ -439,6 +453,7 @@ def obfuscate_function(tokens, index, replace, replacement, *args):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     prev_tok = tokens[index-1]
     prev_tok_string = prev_tok[1]
     if token_type != tokenize.NAME:
@@ -469,6 +484,7 @@ def obfuscate_class(tokens, index, replace, replacement, *args):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     prev_tok = tokens[index-1]
     prev_tok_string = prev_tok[1]
     if token_type != tokenize.NAME:
@@ -495,6 +511,7 @@ def obfuscate_unique(tokens, index, replace, replacement, *args):
     tok = tokens[index]
     token_type = tok[0]
     token_string = tok[1]
+    print("tokstr: " + token_string)
     if token_type != tokenize.NAME:
         return None # Skip this token
     if token_string == replace:
@@ -611,6 +628,7 @@ def obfuscate_global_import_methods(module, tokens, name_generator, table=None):
         for index, tok in enumerate(tokens):
             token_type = tok[0]
             token_string = tok[1]
+            print("tokstr: " + token_string)
             if token_type != tokenize.NAME:
                 continue # Speedup
             tokens[index+1][1]
@@ -632,6 +650,7 @@ def obfuscate_global_import_methods(module, tokens, name_generator, table=None):
         for tok in tokens[:]:
             token_type = tok[0]
             token_string = tok[1]
+            print("tokstr: " + token_string)
             if token_type == tokenize.NEWLINE:
                 import_line = False
             elif token_type == tokenize.INDENT:

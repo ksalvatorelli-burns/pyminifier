@@ -291,6 +291,17 @@ def find_imported_functions(code):
     second_items = [t[1] for t in matches]
     result_string = ', '.join(second_items)
     importslist = [impi.strip() for impi in result_string.split(',')]
+
+    print("ImportsList:")
+    print(importslist)
+    print(importslist)
+    print(importslist)
+    print(importslist)
+    print(importslist)
+    print(importslist)
+    print(importslist)
+    print("/ImportsList")
+
     # Return the list of imported functions
     return importslist
 
